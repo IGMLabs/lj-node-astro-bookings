@@ -1,0 +1,43 @@
+{
+  "name": "ab-node-astro-bookings",
+  "version": "1.2.0",
+  "description": "Fundamental Javascript boilerplate",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/main.js",
+    "prerelease": "standard-version ",
+    "release": "git push --follow-tags origin main",
+    "update": "ncu -u"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IGMLabs/ab-node-astro-bookings.git"
+  },
+  "keywords": [
+    "javascript",
+    "eslint",
+    "prettier",
+    "standard-version",
+    "boilerplate",
+    "template"
+  ],
+  "author": {
+    "name": "Alberto Basalo",
+    "email": "albertobasalo@hotmail.com",
+    "url": "https://twitter.com/albertobasalo"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IGMLabs/ab-node-astro-bookings/issues"
+  },
+  "homepage": "https://github.com/IGMLabs/ab-node-astro-bookings#readme",
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "npm-check-updates": "^14.0.1",
+    "prettier": "^2.7.1",
+    "standard-version": "^9.5.0"
+  }
+}
