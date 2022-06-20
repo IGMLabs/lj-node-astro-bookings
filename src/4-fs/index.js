@@ -1,7 +1,7 @@
 import * as fs from "fs";
 
 const scriptFile = process.argv[1];
-const fileContent = fs.readFileSync(scriptFile);
+// const fileContent = fs.readFileSync(scriptFile);
 // console.log(`fileContent: `);
 // console.log(fileContent);
 // console.log(`toString: `);
