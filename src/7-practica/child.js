@@ -3,16 +3,21 @@ import * as fs from "fs/promises";
 console.log("child strarted working");
 
 process.on("message", (arg) => {
-  calcular(arg.seed);
+  try {
+    calcular(arg.seed);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 async function calcular(seed) {
   let texto = "" + seed;
   let iteracion = seed;
   const scriptFile = process.argv[1];
+  const start = new Date().getTime();
 
   while (iteracion !== 1) {
-    if (iteracion === 0) {
+    if (iteracion < 1) {
       texto = "error";
       break;
     }
@@ -24,6 +29,10 @@ async function calcular(seed) {
       texto += " " + iteracion;
     }
   }
+  const end = new Date().getTime();
+  texto += " Fecha inicio: " + start;
+  texto += " Fecha fin: " + end;
+  texto += " Tiemo transcurrido" + (end - start);
 
   await fs.writeFile(`${scriptFile}.${seed}.txt`, texto);
 
