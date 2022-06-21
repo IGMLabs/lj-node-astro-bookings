@@ -14,11 +14,11 @@ async function calcular(seed) {
     const scriptFile = process.argv[1];
     const start = process.hrtime();
     if (!parse) {
-      throw new Error("no es un numero");
+      throw new Error(" No es un numero ");
     }
     while (iteracion !== 1) {
       if (iteracion < 1) {
-        texto = "error";
+        texto = " error ";
         break;
       }
       if (iteracion % 2 === 0) {
@@ -37,8 +37,8 @@ async function calcular(seed) {
     await fs.writeFile(`${scriptFile}.${seed}.txt`, texto);
     process.exit();
   } catch (Error) {
-    console.log(Error + "Hola estoy aqui");
-    process.send({ msg: "Error en el hijo", err: Error, seed: seed });
+    console.log(Error + " Hola estoy aqui ");
+    process.send({ msg: " Error en el hijo ", err: Error, seed: seed });
     process.exit();
   }
 }
