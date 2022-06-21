@@ -16,7 +16,7 @@ const scriptFile = process.argv[1];
 fs.readFile(scriptFile)
   .then(copyFile)
   .catch((err) => {
-    console.log(`Error: ${err}` );
+    console.log(`Error: ${err}`);
   })
   .finally(() => {
     console.log("Terminado");
