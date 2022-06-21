@@ -27,5 +27,5 @@ async function calcular(seed) {
 
   await fs.writeFile(`${scriptFile}.${seed}.txt`, texto);
 
-  //process.exit();
+  process.exit();
 }
