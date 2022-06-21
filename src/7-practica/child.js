@@ -5,8 +5,9 @@ console.log("child strarted working");
 process.on("message", (arg) => {
   try {
     calcular(arg.seed);
-  } catch (error) {
-    console.log(error);
+  } catch (Error) {
+    process.send({ msg: "Error en el hijo", err: Error });
+    console.log(Error);
   }
 });
 
@@ -14,7 +15,7 @@ async function calcular(seed) {
   let texto = "" + seed;
   let iteracion = seed;
   const scriptFile = process.argv[1];
-  const start = new Date().getTime();
+  const start = process.hrtime();
 
   while (iteracion !== 1) {
     if (iteracion < 1) {
@@ -29,10 +30,10 @@ async function calcular(seed) {
       texto += " " + iteracion;
     }
   }
-  const end = new Date().getTime();
-  texto += " Fecha inicio: " + start;
-  texto += " Fecha fin: " + end;
-  texto += " Tiemo transcurrido" + (end - start);
+  const end = process.hrtime();
+  texto += " Fecha inicio: " + start[1];
+  texto += " Fecha fin: " + end[1];
+  texto += " Tiemo transcurrido: " + (end[1] - start[1]);
 
   await fs.writeFile(`${scriptFile}.${seed}.txt`, texto);
 
