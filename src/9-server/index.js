@@ -12,7 +12,9 @@ server.on("request", async (requestStream, responseStream) => {
   console.log(requestStream.url);
   await fs.readFile(url, (err, fileContent) => {
     processRequest(err, fileContent, requestStream, responseStream);
-    writePipe(fileContent, requestStream.url);
+    if (!err) {
+      writePipe(fileContent, requestStream.url);
+    }
   });
 });
 
@@ -32,12 +34,12 @@ function processRequest(err, fileContent, requestStream, responseStream) {
   }
 }
 
-function buildMessageOk(url, fileContetn) {
+function buildMessageOk(url, fileContent) {
   let message = "";
   message += "Hola mundo \n";
   message += url;
   message += "\n";
-  message += fileContetn;
+  message += fileContent;
   return message;
 }
 
