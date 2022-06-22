@@ -3,7 +3,6 @@ import * as fs from "fs";
 
 const PORT = 8000;
 const BASE_URL = "C:/Users/IGM000108/Desktop/igmlabs/blr-node-astro-bookings/src";
-const LOCAL_HOST = "http://localhost:8000/";
 const OK = 200;
 const NOT_FOUND = 404;
 const server = http.createServer();
@@ -13,8 +12,7 @@ server.on("request", async (requestStream, responseStream) => {
   console.log(requestStream.url);
   await fs.readFile(url, (err, fileContent) => {
     processRequest(err, fileContent, requestStream, responseStream);
-    let urlGet = LOCAL_HOST + requestStream.url;
-    http.get(urlGet, writePipe);
+    writePipe(fileContent, requestStream.url);
   });
 });
 
@@ -52,8 +50,10 @@ function buildMessageNotOk(url, err) {
   return message;
 }
 
-async function writePipe(responseStream) {
-  let writeStream = fs.createWriteStream("www.google.com.html");
-  await responseStream.pipe(writeStream);
+function writePipe(fileContent, url) {
+  let archiveName = url.split("/");
+  let finalArchiveName = archiveName.join(".");
+  let writeStream = fs.createWriteStream("./src/9-server/" + finalArchiveName);
+  writeStream.write(fileContent);
   writeStream.close();
 }
